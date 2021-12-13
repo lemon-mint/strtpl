@@ -2,12 +2,29 @@ package strtpl
 
 import (
 	"fmt"
+	"os"
 	"strings"
 )
 
 type TPL struct {
 	raw    string
 	tokens []string
+}
+
+func readFile(path string) (string, error) {
+	f, err := os.ReadFile(path)
+	if err != nil {
+		return "", err
+	}
+	return string(f), nil
+}
+
+func FromFile(path string) (*TPL, error) {
+	raw, err := readFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return NewTPL(raw), nil
 }
 
 func NewTPL(raw string) *TPL {
