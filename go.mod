@@ -1,3 +1,3 @@
 module github.com/lemon-mint/strtpl
 
-go 1.17
+go 1.18
